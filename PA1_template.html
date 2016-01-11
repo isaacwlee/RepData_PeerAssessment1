@@ -67,23 +67,75 @@ img {
 <p>library(lattice)</p>
 <div id="loading-and-preprocessing-the-data" class="section level2">
 <h2>Loading and preprocessing the data</h2>
-<p>activityData &lt;- read.csv(‘activity.csv’) activityData<span class="math">\(date &lt;- as.Date(activityData\)</span>date, “%Y-%m-%d”)</p>
+<div id="load-the-data" class="section level4">
+<h4>1.Load the data</h4>
+<p>activityData &lt;- read.csv(‘activity.csv’)</p>
+</div>
+<div id="processtransform-the-data-if-necessary-into-a-format-suitable-for-your-analysis" class="section level4">
+<h4>2.Process/transform the data (if necessary) into a format suitable for your analysis</h4>
+<p>activityData<span class="math">\(date &lt;- as.Date(activityData\)</span>date, “%Y-%m-%d”)</p>
+</div>
 </div>
 <div id="what-is-mean-total-number-of-steps-taken-per-day" class="section level2">
 <h2>What is mean total number of steps taken per day?</h2>
-<p>totalSteps &lt;- aggregate(steps ~ date, data = activityData, sum, na.rm = TRUE) hist(totalSteps<span class="math">\(steps, col = &quot;red&quot;, xlab = &quot;Steps&quot;, ylab = &quot;Days&quot;, main = &quot;&quot;) mean(totalSteps\)</span>steps) median(totalSteps$steps)</p>
+<div id="calculate-the-total-number-of-steps-taken-per-day" class="section level4">
+<h4>1.Calculate the total number of steps taken per day</h4>
+<p>totalSteps &lt;- aggregate(steps ~ date, data = activityData, sum, na.rm = TRUE)</p>
+</div>
+<div id="make-a-histogram-of-the-total-number-of-steps-taken-each-day" class="section level4">
+<h4>2.Make a histogram of the total number of steps taken each day</h4>
+<p>hist(totalSteps$steps, col = “red”, xlab = “Steps”, ylab = “Days”, main = “”)</p>
+</div>
+<div id="calculate-and-report-the-mean-and-median-of-the-total-number-of-steps-taken-per-day" class="section level4">
+<h4>3.Calculate and report the mean and median of the total number of steps taken per day</h4>
+<p>mean(totalSteps$steps)</p>
+<p>median(totalSteps$steps)</p>
+</div>
 </div>
 <div id="what-is-the-average-daily-activity-pattern" class="section level2">
 <h2>What is the average daily activity pattern?</h2>
-<p>stepIntervals &lt;- aggregate(steps ~ interval, data = activityData, FUN = mean) plot(stepIntervals, type = “l”, col = “red”, xlab = “Interval”, ylab = “Steps”) stepIntervals<span class="math">\(interval[which.max(stepIntervals\)</span>steps)]</p>
+<div id="calculate-and-report-the-mean-and-median-of-the-total-number-of-steps-taken-per-day-1" class="section level4">
+<h4>1.Calculate and report the mean and median of the total number of steps taken per day</h4>
+<p>stepIntervals &lt;- aggregate(steps ~ interval, data = activityData, FUN = mean)</p>
+<p>plot(stepIntervals, type = “l”, col = “red”, xlab = “Interval”, ylab = “Steps”)</p>
+</div>
+<div id="which-5-minute-interval-on-average-across-all-the-days-in-the-dataset-contains-the-maximum-number-of-steps" class="section level4">
+<h4>2.Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?</h4>
+<p>stepIntervals<span class="math">\(interval[which.max(stepIntervals\)</span>steps)]</p>
+</div>
 </div>
 <div id="imputing-missing-values" class="section level2">
 <h2>Imputing missing values</h2>
-<p>sum(is.na(activityData)) activityDataImputed &lt;- activityData activityDataImputed<span class="math">\(date &lt;- as.Date(activityDataImputed\)</span>date, “%Y-%m-%d”) activityDataImputed<span class="math">\(steps[which(is.na(activityDataImputed\)</span>steps))] &lt;- mean(stepIntervals<span class="math">\(steps) totalStepsImputed &lt;- aggregate(steps ~ date, data = activityDataImputed, sum, na.rm = TRUE) hist(totalStepsImputed\)</span>steps, col = “red”, xlab = “Steps”, ylab = “Days”, main = “”) mean(totalStepsImputed<span class="math">\(steps) median(totalStepsImputed\)</span>steps)</p>
+<div id="calculate-and-report-the-total-number-of-missing-values-in-the-dataset-i.e.the-total-number-of-rows-with-nas" class="section level4">
+<h4>1.Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)</h4>
+<p>sum(is.na(activityData))</p>
+</div>
+<div id="create-a-new-dataset-that-is-equal-to-the-original-dataset-but-with-the-missing-data-filled-in." class="section level4">
+<h4>3.Create a new dataset that is equal to the original dataset but with the missing data filled in.</h4>
+<p>activityDataImputed &lt;- activityData</p>
+<p>activityDataImputed<span class="math">\(date &lt;- as.Date(activityDataImputed\)</span>date, “%Y-%m-%d”)</p>
+<p>activityDataImputed<span class="math">\(steps[which(is.na(activityDataImputed\)</span>steps))] &lt;- mean(stepIntervals$steps)</p>
+</div>
+<div id="make-a-histogram-of-the-total-number-of-steps-taken-each-day-and-calculate-and-report-the-mean-and-median-total-number-of-steps-taken-per-day.-do-these-values-differ-from-the-estimates-from-the-first-part-of-the-assignment-what-is-the-impact-of-imputing-missing-data-on-the-estimates-of-the-total-daily-number-of-steps" class="section level4">
+<h4>4.Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?</h4>
+<p>totalStepsImputed &lt;- aggregate(steps ~ date, data = activityDataImputed, sum, na.rm = TRUE)</p>
+<p>hist(totalStepsImputed$steps, col = “red”, xlab = “Steps”, ylab = “Days”, main = “”)</p>
+<p>mean(totalStepsImputed$steps)</p>
+<p>median(totalStepsImputed$steps)</p>
+</div>
 </div>
 <div id="are-there-differences-in-activity-patterns-between-weekdays-and-weekends" class="section level2">
 <h2>Are there differences in activity patterns between weekdays and weekends?</h2>
-<p>daytype &lt;- function(date) { if (weekdays(as.Date(date)) %in% c(“Saturday”, “Sunday”)) { “weekend” } else { “weekday” } } activityDataImputed<span class="math">\(daytype &lt;- as.factor(sapply(activityDataImputed\)</span>date, daytype)) stepsWkWknd &lt;- aggregate(steps ~ interval + daytype, data = activityDataImputed, mean) xyplot(steps ~ interval | daytype, stepsWkWknd, type = “l”, layout = c(1, 2), xlab = “Interval”, ylab = “Steps”)</p>
+<div id="create-a-new-factor-variable-in-the-dataset-with-two-levels-weekday-and-weekend-indicating-whether-a-given-date-is-a-weekday-or-weekend-day." class="section level4">
+<h4>1.Create a new factor variable in the dataset with two levels – “weekday” and “weekend” indicating whether a given date is a weekday or weekend day.</h4>
+<p>daytype &lt;- function(date) { if (weekdays(as.Date(date)) %in% c(“Saturday”, “Sunday”)) { “weekend” } else { “weekday” } }</p>
+<p>activityDataImputed<span class="math">\(daytype &lt;- as.factor(sapply(activityDataImputed\)</span>date, daytype))</p>
+</div>
+<div id="make-a-panel-plot-containing-a-time-series-plot-i.e.--of-the-5-minute-interval-x-axis-and-the-average-number-of-steps-taken-averaged-across-all-weekday-days-or-weekend-days-y-axis.-see-the-readme-file-in-the-github-repository-to-see-an-example-of-what-this-plot-should-look-like-using-simulated-data." class="section level4">
+<h4>2.Make a panel plot containing a time series plot (i.e. 𝚝𝚢𝚙𝚎 = “𝚕”) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.</h4>
+<p>stepsWkWknd &lt;- aggregate(steps ~ interval + daytype, data = activityDataImputed, mean)</p>
+<p>xyplot(steps ~ interval | daytype, stepsWkWknd, type = “l”, layout = c(1, 2), xlab = “Interval”, ylab = “Steps”)</p>
+</div>
 </div>
 
 
