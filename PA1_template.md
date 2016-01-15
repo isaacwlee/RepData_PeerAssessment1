@@ -81,6 +81,11 @@ sum(is.na(activityData))
 ```
 ## [1] 2304
 ```
+
+###2. Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.
+
+Strategy here is to fill the missing values with mean value of total steps taken per day using the aggregation calculated above stepIntervals
+
 ###3.Create a new dataset that is equal to the original dataset but with the missing data filled in.
 
 ```r
@@ -99,7 +104,6 @@ hist(totalStepsImputed$steps, col = "red", xlab = "Steps", ylab = "Days", main =
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-10-1.png)\
-
 
 ```r
 mean(totalStepsImputed$steps)
@@ -140,4 +144,4 @@ stepsWkWknd <- aggregate(steps ~ interval + daytype, data = activityDataImputed,
 xyplot(steps ~ interval | daytype, stepsWkWknd, type = "l", layout = c(1, 2), xlab = "Interval", ylab = "Steps")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-13-1.png)\
+![](PA1_template_files/figure-html/unnamed-chunk-12-1.png)\

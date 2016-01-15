@@ -111,6 +111,10 @@ plot(stepIntervals, type = &quot;l&quot;, col = &quot;red&quot;, xlab = &quot;In
 <pre class="r"><code>sum(is.na(activityData))</code></pre>
 <pre><code>## [1] 2304</code></pre>
 </div>
+<div id="devise-a-strategy-for-filling-in-all-of-the-missing-values-in-the-dataset.-the-strategy-does-not-need-to-be-sophisticated.-for-example-you-could-use-the-meanmedian-for-that-day-or-the-mean-for-that-5-minute-interval-etc." class="section level3">
+<h3>2. Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.</h3>
+<p>Strategy here is to fill the missing values with mean value of total steps taken per day using the aggregation calculated above stepIntervals</p>
+</div>
 <div id="create-a-new-dataset-that-is-equal-to-the-original-dataset-but-with-the-missing-data-filled-in." class="section level3">
 <h3>3.Create a new dataset that is equal to the original dataset but with the missing data filled in.</h3>
 <pre class="r"><code>activityDataImputed &lt;- activityData
